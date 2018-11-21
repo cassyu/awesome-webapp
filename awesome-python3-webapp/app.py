@@ -12,7 +12,7 @@ def index(request):
     return web.Response(body=b'<h1>Awesome</h1>')
 
 async def init(event_loop):
-    #循环参数已被弃用 
+    #循环参数已被弃用
     app = web.Application()
     app.router.add_route('GET', '/', index)
     app_runner = web.AppRunner(app)
