@@ -81,8 +81,19 @@ loop.run_forever()
 class Student(object):
        pass
 
-bart = Student()
-bart.name = "122"
-print(bart)
-print(Student)
-print(bart.name)
+
+class ListMetaclass(type):
+       # cls 当前准备创建的类的对象
+       #name；l类的名字
+       #bases 类继承的父类集合
+       #attrs 类的方法集合
+       def __new__(cls,name,bases,attrs):
+              attrs["add"] = lambda self,value:self.append(value)
+              return type.__new__(cls,name,bases,attrs)
+
+class Mylist(list,metaclass=ListMetaclass):
+       pass
+
+L = Mylist()
+L.add(1)
+print(L)

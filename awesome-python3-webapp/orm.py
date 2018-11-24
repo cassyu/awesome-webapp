@@ -56,6 +56,11 @@ async def execute(sql,args,autocommit=True):
                     await conn.rollback()
                raise
           return affected
+def create_args_string(num):
+    L= []
+    for n in range(num):
+
+
 class Field(object):
     def __init__(self,name,column_type,primary_key,default):
         self.name = name;
@@ -67,6 +72,7 @@ class Field(object):
 
 class ModelMetaclass(type):
     def __new__(cls,name,bases,attrs):
+        #
         if name =="Model":
             return type.__new__(cls,name,bases,attrs)
         tableName = attrs.get("__table__",None) or name
